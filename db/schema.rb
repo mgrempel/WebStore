@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_205131) do
+ActiveRecord::Schema.define(version: 2020_11_12_205442) do
 
   create_table "address_infos", force: :cascade do |t|
     t.string "address"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2020_11_12_205131) do
     t.string "country"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_address_infos_on_user_id"
   end
 
   create_table "billing_infos", force: :cascade do |t|
@@ -68,5 +70,6 @@ ActiveRecord::Schema.define(version: 2020_11_12_205131) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "address_infos", "users"
   add_foreign_key "orders", "users"
 end
