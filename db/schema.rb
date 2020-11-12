@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_201919) do
+ActiveRecord::Schema.define(version: 2020_11_12_202626) do
+
+  create_table "items", force: :cascade do |t|
+    t.string "item_name"
+    t.string "description"
+    t.decimal "markdown"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "order_items", force: :cascade do |t|
     t.decimal "item_price"
