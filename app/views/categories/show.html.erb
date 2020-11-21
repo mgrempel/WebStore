@@ -1,2 +1,8 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<div>
+  <h1>Items with the <%= @category.name %> Tag:</h1>
+  <p><%= @category.description %></p>
+
+  <div>
+    <%= render "layouts/items_table" %>
+  </div>
+</div>
