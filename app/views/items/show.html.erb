@@ -1,2 +1,16 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<div>
+  <h1><%= @item.name %></h1>
+  <% if @item.markdown != 0 %>
+    <p>$<%= @item.markdown %></p>
+  <% else %>
+    <p>$<%= @item.price %></p>
+  <% end %>
+  <p><%= @item.description %></p>
+
+  <h3>Tags:</h3>
+  <ul>
+    <% @item.categories.each do |category| %>
+      <li><%= link_to category.name, category_path(category) %></li>
+    <% end %>
+  </ul>
+</div>
