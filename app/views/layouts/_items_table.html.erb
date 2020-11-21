@@ -1,0 +1,14 @@
+<table>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= link_to product.name, item_path(product) %></td>
+          <% if product.markdown != 0 %>
+            <td>$<%= product.markdown %></td>
+            <td>Sale!</td>
+          <% else %>
+            <td>$<%= product.price %></td>
+            <td>Regular</td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
