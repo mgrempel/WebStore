@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'items/show'
+  get "/items/:id", to: "items#show", as: "item"
   get 'home/index'
   get 'home/about'
   get 'home/contact'
