@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'items/show'
   get 'home/index'
   get 'home/about'
   get 'home/contact'
