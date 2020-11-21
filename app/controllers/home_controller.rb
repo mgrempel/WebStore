@@ -1,5 +1,8 @@
 class HomeController < ApplicationController
-  def index; end
+  def index
+    @products = Item.all
+    @categories = Category.all
+  end
 
   def about
     @about = About.first
