@@ -14,7 +14,7 @@ class HomeController < ApplicationController
                     @products.where.not(markdown: 0)
                   end
     end
-
+    @products = @products.page(params[:page])
     @categories = Category.all
   end
 
