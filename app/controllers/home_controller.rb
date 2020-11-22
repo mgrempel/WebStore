@@ -27,6 +27,18 @@ class HomeController < ApplicationController
   end
 
   def search
-
+    @action = action_name
+    @search_options = ["All", "Newest", "Recently Updated", "On Sale"]
+    @products = Item.includes(:categories).all
+    unless params[:option] == "All" || params[:option].nil?
+      @products = if params[:option] == "Newest"
+                    @products.where("created_at > ?", 3.days.ago)
+                  elsif params[:option] == "Recently Updated"
+                    @products.where("updated_at > ?", 3.days.ago)
+                  elsif params[:option] == "On Sale"
+                    @products.where.not(markdown: 0)
+                  end
+    end
+    @products = @products.page(params[:page])
   end
 end
