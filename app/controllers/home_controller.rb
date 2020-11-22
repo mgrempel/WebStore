@@ -38,9 +38,11 @@ class HomeController < ApplicationController
     @current_selection = (params[:option] || @search_options[0])
 
     @categories = Category.pluck(:name)
-    @category_selection = (params[:category] || @categories[0])
 
     @products = Item.includes(:categories).all
+
+    # unless params[:category]
+
     unless params[:option] == "All" || params[:option].nil?
       @products = if params[:option] == "Newest"
                     @products.where("created_at > ?", 3.days.ago)
