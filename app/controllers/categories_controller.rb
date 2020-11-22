@@ -15,5 +15,6 @@ class CategoriesController < ApplicationController
                     @products.where.not(markdown: 0)
                   end
     end
+    @products = @products.page(params[:page])
   end
 end

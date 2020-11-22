@@ -1,6 +1,8 @@
 <%= render "layouts/filter" %>
 
 <% if !@products.nil? %>
+  <%= paginate @products %>
+  <%= %>
   <table>
         <% @products.each do |product| %>
           <tr>
@@ -15,6 +17,7 @@
           </tr>
         <% end %>
   </table>
+  <%= page_entries_info @products %>
 <% else %>
   <p>No items could be find with this search criteria.</p>
 <% end %>
