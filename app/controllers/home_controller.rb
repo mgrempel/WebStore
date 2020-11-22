@@ -25,4 +25,8 @@ class HomeController < ApplicationController
   def contact
     @contact = Contact.first
   end
+
+  def search
+
+  end
 end
