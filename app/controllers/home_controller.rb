@@ -14,6 +14,11 @@ class HomeController < ApplicationController
                     @products.where.not(markdown: 0)
                   end
     end
+
+    unless params[:search] == "" || params[:search].nil?
+      @products = @products.where("name LIKE ?", "%#{params[:search]}%").or(@products.where("description LIKE ?", "%#{params[:search]}%"))
+    end
+
     @products = @products.page(params[:page])
     @categories = Category.all
   end
@@ -38,6 +43,10 @@ class HomeController < ApplicationController
                   elsif params[:option] == "On Sale"
                     @products.where.not(markdown: 0)
                   end
+    end
+
+    unless params[:search] == "" || params[:search].nil?
+      @products = @products.where("name LIKE ?", "%#{params[:search]}%").or(@products.where("description LIKE ?", "%#{params[:search]}%"))
     end
     @products = @products.page(params[:page])
   end
