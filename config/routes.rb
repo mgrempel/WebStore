@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'cart/view'
   get "/categories/:id", to: "categories#show", as: "category"
   get "/items/:id", to: "items#show", as: "item"
   get "home/index"
