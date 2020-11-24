@@ -15,5 +15,13 @@ class CartController < ApplicationController
                                   end
 
     cookies[:cart] = cart.to_json
+
+    @item = Item.find(params[:item_id].to_i)
+    @count = params[:amount].to_i
+    @total = if @item.markdown.zero?
+               @count * @item.price
+             else
+               @count * @item.markdown
+             end
   end
 end
