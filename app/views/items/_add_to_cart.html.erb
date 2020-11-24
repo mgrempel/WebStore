@@ -1,0 +1,7 @@
+<div>
+  <%= form_tag "/cart/add", :name => "addToCart", method: :post do %>
+    <%= number_field_tag :amount, "1", placeholder: "Amount", min: 1 %>
+    <%= hidden_field_tag :item_id, @item.id %>
+    <%= submit_tag "Add" %>
+  <% end %>
+</div>
