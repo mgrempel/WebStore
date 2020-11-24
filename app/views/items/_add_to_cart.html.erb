@@ -1,0 +1,6 @@
+<div>
+  <%= form_tag "/cart/add", :name => "addToCart", method: :post do %>
+    <%= search_field_tag :amount, "1", placeholder: "Amount" %>
+    <%= submit_tag "Add" %>
+  <% end %>
+</div>
