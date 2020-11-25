@@ -38,7 +38,7 @@ class HomeController < ApplicationController
     @current_selection = (params[:option] || @search_options[0])
 
     @categories = Category.pluck(:name)
-    @category_selection = (params[:category] || @categories[0])
+    @category_selection = (params[:category] || "")
 
     @products = Item.includes(:categories).all
 
