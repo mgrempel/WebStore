@@ -1,0 +1,4 @@
+<%= form_tag "/cart/view", :name => "removeButton", method: :post do %>
+  <%= hidden_field_tag :delete, item.id %>
+  <%= submit_tag "Remove" %>
+<% end %>
