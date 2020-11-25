@@ -1,5 +1,5 @@
 <%= form_tag "/cart/view", :name => "updateForm", method: :post do %>
-  <%= number_field_tag :amount, "1", placeholder: "Amount", min: 1 %>
-  <%= hidden_field_tag :delete, item.id %>
+  <%= number_field_tag :update_amount, item_qty, placeholder: "Amount", min: 1 %>
+  <%= hidden_field_tag :update, item.id %>
   <%= submit_tag "Update" %>
 <% end %>
