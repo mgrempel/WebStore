@@ -50,7 +50,7 @@ class HomeController < ApplicationController
       @products = if params[:option] == "Newest"
                     @products.where("items.created_at > ?", 3.days.ago)
                   elsif params[:option] == "Recently Updated"
-                    @products.where("items.updated_at > ?", 3.days.ago)
+                    @products.where("items.updated_at > ? AND items.created_at < ?", 3.days.ago, 3.days.ago)
                   elsif params[:option] == "On Sale"
                     @products.where.not(markdown: 0)
                   end
