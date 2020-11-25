@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get "cart/view"
+  post "cart/view"
   post "cart/add"
   get "/cart/add", to: "cart#view"
   get "/categories/:id", to: "categories#show", as: "category"
