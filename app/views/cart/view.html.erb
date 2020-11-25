@@ -20,7 +20,7 @@
               <td><%= link_to item.name, item_path(item) %></td>
               <td><%= @cart[item.id.to_s] %></td>
               <td>$<%= @cart[item.id.to_s].to_i * item_price %></td>
-              <td>ChangeAmount</td>
+              <td><%= render partial: "adjust", locals: {item: item} %></td>
               <td><%= render partial: "remove", locals: {item: item} %></td>
             </tr>
           </table>
