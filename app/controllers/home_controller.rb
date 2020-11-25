@@ -48,16 +48,16 @@ class HomeController < ApplicationController
 
     unless params[:option] == "All" || params[:option].nil?
       @products = if params[:option] == "Newest"
-                    @products.where("created_at > ?", 3.days.ago)
+                    @products.where("items.created_at > ?", 3.days.ago)
                   elsif params[:option] == "Recently Updated"
-                    @products.where("updated_at > ? AND created_at < ?", 3.days.ago, 3.days.ago)
+                    @products.where("items.updated_at > ?", 3.days.ago)
                   elsif params[:option] == "On Sale"
                     @products.where.not(markdown: 0)
                   end
     end
 
     unless params[:search] == "" || params[:search].nil?
-      @products = @products.where("name LIKE ?", "%#{params[:search]}%").or(@products.where("description LIKE ?", "%#{params[:search]}%"))
+      @products = @products.where("items.name LIKE ?", "%#{params[:search]}%").or(@products.where("items.description LIKE ?", "%#{params[:search]}%"))
     end
     @products = @products.page(params[:page])
   end
