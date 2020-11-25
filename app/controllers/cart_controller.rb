@@ -3,6 +3,11 @@ class CartController < ApplicationController
     unless cookies[:cart].nil?
       cart = JSON.parse(cookies[:cart])
 
+      unless params[:update].nil?
+        cart[params[:update]] = params[:update_amount].to_i
+        cookies[:cart] = cart.to_json
+      end
+
       unless params[:delete].nil?
         # Delete the specified item from our cart
         cart.delete(params[:delete])
