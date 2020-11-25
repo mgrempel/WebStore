@@ -9,7 +9,7 @@ class HomeController < ApplicationController
       @products = if params[:option] == "Newest"
                     @products.where("created_at > ?", 3.days.ago)
                   elsif params[:option] == "Recently Updated"
-                    @products.where("updated_at > ?", 3.days.ago)
+                    @products.where("updated_at > ? AND created_at < ?", 3.days.ago, 3.days.ago)
                   elsif params[:option] == "On Sale"
                     @products.where.not(markdown: 0)
                   end
@@ -19,7 +19,7 @@ class HomeController < ApplicationController
       @products = @products.where("name LIKE ?", "%#{params[:search]}%").or(@products.where("description LIKE ?", "%#{params[:search]}%"))
     end
 
-    @products = @products.page(params[:page])
+    @products = @products.page(params[:page]).order("id DESC")
     @categories = Category.all
   end
 
@@ -50,7 +50,7 @@ class HomeController < ApplicationController
       @products = if params[:option] == "Newest"
                     @products.where("created_at > ?", 3.days.ago)
                   elsif params[:option] == "Recently Updated"
-                    @products.where("updated_at > ?", 3.days.ago)
+                    @products.where("updated_at > ? AND created_at < ?", 3.days.ago, 3.days.ago)
                   elsif params[:option] == "On Sale"
                     @products.where.not(markdown: 0)
                   end
