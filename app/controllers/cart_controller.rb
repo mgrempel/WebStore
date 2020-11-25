@@ -1,14 +1,24 @@
 class CartController < ApplicationController
   def view
-    @cart = JSON.parse(cookies[:cart])
+    unless cookies[:cart].nil?
+      cart = JSON.parse(cookies[:cart])
 
-    item_ids = []
+      unless params[:delete].nil?
+        # Delete the specified item from our cart
+        cart.delete(params[:delete])
+        cookies[:cart] = cart.to_json
+      end
 
-    @cart.each do |k, _|
-      item_ids.append(k)
+      @cart = cart
+
+      item_ids = []
+
+      @cart.each do |k, _|
+        item_ids.append(k)
+      end
+
+      @items = Item.find(item_ids)
     end
-
-    @items = Item.find(item_ids)
   end
 
   def add
