@@ -1,24 +1,30 @@
 <div>
   <h1>View Cart</h1>
   <div>
-    <table>
-      <tr>
-        <th>Product</th>
-        <th>Qty.</th>
-        <th>Price</th>
-      </tr>
-      <% @items.each do |item| %>
-        <% item_price = if item.markdown != 0
-                          item.markdown
-                        else
-                          item.price
-                        end %>
-        <tr>
-          <td><%= link_to item.name, item_path(item) %></td>
-          <td><%= @cart[item.id.to_s] %></td>
-          <td>$<%= @cart[item.id.to_s].to_i * item_price %></td>
-        </tr>
-      <% end %>
-    </table>
+    <% if @items.nil? %>
+      <p>No items in cart.</p>
+    <% else %>
+        <table>
+          <tr>
+            <th>Product</th>
+            <th>Qty.</th>
+            <th>Price</th>
+          </tr>
+          <% @items.each do |item| %>
+            <% item_price = if item.markdown != 0
+                              item.markdown
+                            else
+                              item.price
+                            end %>
+            <tr>
+              <td><%= link_to item.name, item_path(item) %></td>
+              <td><%= @cart[item.id.to_s] %></td>
+              <td>$<%= @cart[item.id.to_s].to_i * item_price %></td>
+              <td>ChangeAmount</td>
+              <td><%= render partial: "remove", locals: {item: item} %></td>
+            </tr>
+          </table>
+        <% end %>
+    <% end %>
   </div>
 </div>
