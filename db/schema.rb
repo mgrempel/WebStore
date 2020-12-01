@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_184013) do
+ActiveRecord::Schema.define(version: 2020_12_01_203943) do
 
   create_table "abouts", force: :cascade do |t|
     t.string "title"
@@ -59,11 +59,12 @@ ActiveRecord::Schema.define(version: 2020_12_01_184013) do
     t.string "address2"
     t.string "postal_code"
     t.string "city"
-    t.string "province"
     t.string "country"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
+    t.integer "province_id", null: false
+    t.index ["province_id"], name: "index_address_infos_on_province_id"
     t.index ["user_id"], name: "index_address_infos_on_user_id"
   end
 
@@ -147,8 +148,6 @@ ActiveRecord::Schema.define(version: 2020_12_01_184013) do
     t.decimal "hst"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "address_info_id", null: false
-    t.index ["address_info_id"], name: "index_provinces_on_address_info_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -166,6 +165,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_184013) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "address_infos", "provinces"
   add_foreign_key "address_infos", "users"
   add_foreign_key "billing_infos", "address_infos", column: "billing_address_info_id_id"
   add_foreign_key "billing_infos", "address_infos", column: "shipping_address_info_id_id"
@@ -173,5 +173,4 @@ ActiveRecord::Schema.define(version: 2020_12_01_184013) do
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
-  add_foreign_key "provinces", "address_infos"
 end
