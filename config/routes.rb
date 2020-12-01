@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+  root "home#index"
   get "cart/view"
   post "cart/view"
   post "cart/add"
