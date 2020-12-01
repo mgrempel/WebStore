@@ -1,0 +1,21 @@
+<div>
+  <h1>New Address</h1>
+
+  <div>
+    <% if @address.errors.any? %>
+      <div id="error_explanation">
+        <%= pluarlize(@address.errors.count, "error") %> prohibited this article from being saved:\
+        <ul>
+          <% @address.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p>
+      <%= form.label :address %>
+      <%= form.text_field :address %>
+    </p>
+  </div>
+</div>

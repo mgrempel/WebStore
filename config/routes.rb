@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  get "user/address"
-  get "user/create"
+  # get "user/address"
+  # post "user/new"
+  # get "user/new", to: "user#address"
+  resources :address_infos
   devise_for :users
   root "home#index"
   get "cart/view"
