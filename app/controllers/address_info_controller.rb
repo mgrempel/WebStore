@@ -1,5 +1,5 @@
-class UserController < ApplicationController
-  def index
+class AddressInfoController < ApplicationController
+  def show
     user = User.find(current_user.id)
     @addresses = user.address_infos
   end
@@ -8,7 +8,9 @@ class UserController < ApplicationController
     @address.new
   end
 
-  def article_params
+  def create; end
+
+  def address_params
     params.require(:address_info).permit(:address, :address2, :postal_code, :city, :provinces)
   end
 end
