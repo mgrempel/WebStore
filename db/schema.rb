@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_183425) do
+ActiveRecord::Schema.define(version: 2020_12_01_184013) do
 
   create_table "abouts", force: :cascade do |t|
     t.string "title"
@@ -147,6 +147,8 @@ ActiveRecord::Schema.define(version: 2020_12_01_183425) do
     t.decimal "hst"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "address_info_id", null: false
+    t.index ["address_info_id"], name: "index_provinces_on_address_info_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -171,4 +173,5 @@ ActiveRecord::Schema.define(version: 2020_12_01_183425) do
   add_foreign_key "order_items", "items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "provinces", "address_infos"
 end
