@@ -27,6 +27,13 @@ class AddressInfosController < ApplicationController
     end
   end
 
+  def destroy
+    @address = AddressInfo.find(params[:id])
+    @address.destroy
+
+    redirect_to address_infos_path
+  end
+
   def address_params
     params.require(:address_info).permit(:address, :address2, :postal_code, :city, :province)
   end

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # post "user/new"
   # get "user/new", to: "user#address"
   resources :address_infos
+  delete "/address_infos.:id", to: "address_infos#destroy", as: "destroy_address_info"
   devise_for :users
   root "home#index"
   get "cart/view"
