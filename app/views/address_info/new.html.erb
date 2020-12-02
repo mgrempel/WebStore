@@ -1,0 +1,48 @@
+<div>
+  <h1>New Address</h1>
+
+  <div>
+    <%= form_with model: @address, local: true do |form| %>
+        <% if @address.errors.any? %>
+      <div id="error_explanation">
+        <%= pluralize(@address.errors.count, "error") %> prohibited this article from being saved:
+        <ul>
+          <% @address.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p>
+      <%= form.label :address %>
+      <%= form.text_field :address %>
+    </p>
+
+    <p>
+      <%= form.label :address2 %>
+      <%= form.text_field :address2 %>
+    </p>
+
+    <p>
+      <%= form.label :postal_code %>
+      <%= form.text_field :postal_code %>
+    </p>
+
+    <p>
+      <%= form.label :city %>
+      <%= form.text_field :city %>
+    </p>
+
+    <p>
+      <%= form.label :provinces %>
+      <%= form.collection_select :province, Province.all, :id, :name %>
+    </p>
+
+    <p>
+      <%= form.submit %>
+    </p>
+
+    <% end %>
+  </div>
+</div>

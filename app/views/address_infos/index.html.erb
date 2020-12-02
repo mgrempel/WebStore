@@ -1,0 +1,21 @@
+<div>
+  <h1>User#address</h1>
+
+  <% if @addresses.nil? %>
+    <p>No addresses found.</p>
+  <% else %>
+    <table>
+      <% @addresses.each do |address| %>
+        <tr>
+          <td><%= address.address %></td>
+          <td><%= address.address2 %></td>
+          <td><%= address.city %></td>
+          <td><%= address.postal_code %></td>
+          <td><%= address.province.name %></td>
+          <td><%= link_to "Destroy", address_infos_path(address), method: :delete %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+  <%= link_to "New", new_address_info_path %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_171623) do
+ActiveRecord::Schema.define(version: 2020_12_01_203943) do
 
   create_table "abouts", force: :cascade do |t|
     t.string "title"
@@ -59,11 +59,12 @@ ActiveRecord::Schema.define(version: 2020_12_01_171623) do
     t.string "address2"
     t.string "postal_code"
     t.string "city"
-    t.string "province"
     t.string "country"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
+    t.integer "province_id", null: false
+    t.index ["province_id"], name: "index_address_infos_on_province_id"
     t.index ["user_id"], name: "index_address_infos_on_user_id"
   end
 
@@ -140,6 +141,15 @@ ActiveRecord::Schema.define(version: 2020_12_01_171623) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "provinces", force: :cascade do |t|
+    t.string "name"
+    t.decimal "gst"
+    t.decimal "pst"
+    t.decimal "hst"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "account_prefs"
@@ -155,6 +165,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_171623) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "address_infos", "provinces"
   add_foreign_key "address_infos", "users"
   add_foreign_key "billing_infos", "address_infos", column: "billing_address_info_id_id"
   add_foreign_key "billing_infos", "address_infos", column: "shipping_address_info_id_id"
