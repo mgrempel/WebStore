@@ -47,4 +47,6 @@ class CartController < ApplicationController
 
     cookies[:cart] = cart.to_json
   end
+
+  def checkout; end
 end
