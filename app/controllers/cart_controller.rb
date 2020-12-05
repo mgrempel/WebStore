@@ -58,6 +58,8 @@ class CartController < ApplicationController
       cart.each do |k, _|
         item_ids.append(k)
       end
+
+      @total = 0.00
       @cart = cart
       @items = Item.find(item_ids)
     end
