@@ -1,7 +1,7 @@
 <div>
   <h1>View Cart</h1>
   <div>
-    <% if @items.empty? %>
+    <% if @items.nil? || @items.empty? %>
       <p>No items in cart.</p>
     <% else %>
         <table>
@@ -24,6 +24,9 @@
               <td><%= render partial: "remove", locals: {item: item} %></td>
             </tr>
           </table>
+        <% end %>
+        <%= form_tag "/cart/checkout", :name => "checkoutForm", method: :post do %>
+          <%= submit_tag "Checkout" %>
         <% end %>
     <% end %>
   </div>

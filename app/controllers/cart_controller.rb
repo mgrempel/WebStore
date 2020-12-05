@@ -48,5 +48,18 @@ class CartController < ApplicationController
     cookies[:cart] = cart.to_json
   end
 
-  def checkout; end
+  def checkout
+    if cookies[:cart].blank?
+      redirect_to cart_view_path
+    else
+      cart = JSON.parse(cookies[:cart])
+      item_ids = []
+
+      cart.each do |k, _|
+        item_ids.append(k)
+      end
+      @cart = cart
+      @items = Item.find(item_ids)
+    end
+  end
 end
