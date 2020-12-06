@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_06_205149) do
+ActiveRecord::Schema.define(version: 2020_12_06_234026) do
 
   create_table "abouts", force: :cascade do |t|
     t.string "title"
@@ -129,7 +129,6 @@ ActiveRecord::Schema.define(version: 2020_12_06_205149) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "order_id", null: false
     t.integer "item_id", null: false
-    t.decimal "tax"
     t.index ["item_id"], name: "index_order_items_on_item_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
   end
@@ -140,6 +139,7 @@ ActiveRecord::Schema.define(version: 2020_12_06_205149) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
     t.integer "address_info_id", null: false
+    t.decimal "tax_rate"
     t.index ["address_info_id"], name: "index_orders_on_address_info_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
