@@ -78,6 +78,7 @@ class CartController < ApplicationController
       #   order.item
       # end
       tax_info = AddressInfo.find(params[:shipping].to_i).province
+      @address_id = params[:shipping]
       @tax_rate = tax_info.gst + tax_info.pst + tax_info.hst
       @total = 0.00
       @cart = cart
