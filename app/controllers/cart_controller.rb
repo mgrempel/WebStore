@@ -59,6 +59,28 @@ class CartController < ApplicationController
         item_ids.append(k)
       end
 
+      # Let's create a new order with provided params
+      user = User.find(current_user.id)
+      # user.orders.build(
+      #   order_date:   DateTime.now,
+      #   address_info: AddressInfo.find(params[:shipping].to_i)
+      # )
+
+      # order = Order.new(
+      #   order_date:   DateTime.now,
+      #   address_info: AddressInfo.find(params[:shipping].to_i),
+      #   user:         user
+      # )
+      # order.save
+
+      # Add each item to the order.
+      # cart.each do |item|
+      #   order.item
+      # end
+
+      puts "That didn't throw an error, thank god."
+      tax_info = AddressInfo.find(params[:shipping].to_i).province
+      @tax_rate = tax_info.gst + tax_info.pst + tax_info.hst
       @total = 0.00
       @cart = cart
       @items = Item.find(item_ids)
@@ -66,7 +88,6 @@ class CartController < ApplicationController
   end
 
   def neworder
-    @order = Order.new
     user = User.find(current_user.id)
     @addresses = user.address_infos
   end
