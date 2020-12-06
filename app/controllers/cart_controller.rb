@@ -65,5 +65,9 @@ class CartController < ApplicationController
     end
   end
 
-  def neworder; end
+  def neworder
+    @order = Order.new
+    user = User.find(current_user.id)
+    @addresses = user.address_infos
+  end
 end
