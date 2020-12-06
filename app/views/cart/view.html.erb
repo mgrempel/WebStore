@@ -25,7 +25,7 @@
             </tr>
           </table>
         <% end %>
-        <%= form_tag "/cart/checkout", :name => "checkoutForm", method: :post do %>
+        <%= form_tag "/cart/neworder", :name => "checkoutForm", method: :get do %>
           <%= submit_tag "Checkout" %>
         <% end %>
     <% end %>
