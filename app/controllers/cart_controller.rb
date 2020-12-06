@@ -77,8 +77,6 @@ class CartController < ApplicationController
       # cart.each do |item|
       #   order.item
       # end
-
-      puts "That didn't throw an error, thank god."
       tax_info = AddressInfo.find(params[:shipping].to_i).province
       @tax_rate = tax_info.gst + tax_info.pst + tax_info.hst
       @total = 0.00
@@ -92,5 +90,7 @@ class CartController < ApplicationController
     @addresses = user.address_infos
   end
 
-  def processorder;v  end
+  def processorder
+    # We need to add our cart contents to the order here, set it's status and persist all.
+  end
 end

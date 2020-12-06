@@ -28,7 +28,9 @@
       </tr>
     </table>
   </div>
-  <%= form_tag "/cart/neworder", :name => "checkoutForm", method: :get do %>
+  <%= form_tag "/cart/processorder", :name => "process", method: :post do %>
     <%= submit_tag "Checkout" %>
+    <%= hidden_field_tag :tax,  @tax_rate%>
+    <%= hidden_field_tag :total, @total %>
   <% end %>
 </div>
