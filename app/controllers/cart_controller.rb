@@ -60,7 +60,7 @@ class CartController < ApplicationController
       end
 
       # Let's create a new order with provided params
-      user = User.find(current_user.id)
+      # user = User.find(current_user.id)
       # user.orders.build(
       #   order_date:   DateTime.now,
       #   address_info: AddressInfo.find(params[:shipping].to_i)
@@ -91,4 +91,6 @@ class CartController < ApplicationController
     user = User.find(current_user.id)
     @addresses = user.address_infos
   end
+
+  def processorder;v  end
 end
