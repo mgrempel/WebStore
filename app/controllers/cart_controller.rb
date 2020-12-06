@@ -64,4 +64,6 @@ class CartController < ApplicationController
       @items = Item.find(item_ids)
     end
   end
+
+  def neworder; end
 end
