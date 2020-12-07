@@ -1,2 +1,28 @@
-<h1>Users#orders</h1>
-<p>Find me in app/views/users/orders.html.erb</p>
+<div>
+  <h1>Orders</h1>
+  <div>
+    <% if @orders.blank? %>
+      <p>No orders found. Buy something.</p>
+    <% else %>
+      <table>
+      <tr>
+        <th>Order Date</th>
+        <th>Amount before Tax</th>
+        <th>Amount after Tax</th>
+        <th>Address</th>
+        <th>Province</th>
+      </tr>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.order_date %></td>
+            <td>$<%= order.total %></td>
+            <td>$<%= order.total + (order.total * order.tax_rate) %></td>
+            <td><%= order.address_info.address %></td>
+            <td><%= order.address_info.province.name %></td>
+            <td>View</td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>
