@@ -1,0 +1,11 @@
+<div>
+  <h1>New Order</h1>
+
+  <h2>Please select a delivery address:</h2>
+  <div>
+    <%= form_tag "checkout", name: "toOrderForm", method: :post do %>
+      <%= select_tag :shipping, options_from_collection_for_select(@addresses, "id", "address") %>
+      <%= submit_tag "Review order" %>
+    <% end %>
+  </div>
+</div>

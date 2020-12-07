@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
-  has_one :user
+  belongs_to :user
+  belongs_to :address_info
   has_many :order_items
 
   validates :order_date, presence: true

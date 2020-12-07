@@ -7,8 +7,12 @@ Rails.application.routes.draw do
   devise_for :users
   root "home#index"
   get "cart/view"
+  get "cart/neworder"
   post "cart/view"
   post "cart/add"
+  post "cart/checkout"
+  post "cart/processorder"
+  get "cart/checkout", to: "cart#view"
   get "/cart/add", to: "cart#view"
   get "/categories/:id", to: "categories#show", as: "category"
   get "/items/:id", to: "items#show", as: "item"

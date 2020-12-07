@@ -1,0 +1,37 @@
+<div>
+  <h1>Checkout</h1>
+
+  <div>
+    <table>
+      <% @items.each do |item| %>
+      <% item_price = if item.markdown != 0
+                              item.markdown
+                            else
+                              item.price
+                            end %>
+        <tr>
+          <td><%= item.name %></td>
+          <td><%= @cart[item.id.to_s] %></td>
+          <td>$<%= @cart[item.id.to_s].to_i * item_price %></td>
+        </tr>
+        <% @total += item_price.to_d * @cart[item.id.to_s].to_d%>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Total: $<%= @total %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>Total after Taxes: $<%= @total + (@total * @tax_rate) %></td>
+      </tr>
+    </table>
+  </div>
+  <%= form_tag "/cart/processorder", :name => "process", method: :post do %>
+    <%= submit_tag "Checkout" %>
+    <%= hidden_field_tag :tax,  @tax_rate%>
+    <%= hidden_field_tag :total, @total %>
+    <%= hidden_field_tag :address, @address_id%>
+  <% end %>
+</div>
