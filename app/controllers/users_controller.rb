@@ -6,5 +6,7 @@ class UsersController < ApplicationController
     @orders = user.orders
   end
 
-  def view; end
+  def view
+    @order = Order.find(params[:id])
+  end
 end

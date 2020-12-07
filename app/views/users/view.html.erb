@@ -1,0 +1,28 @@
+<div>
+  <h1>Viewing Order # <%= @order.id %></h1>
+  <h3>Placed on: <%= @order.order_date %></h3>
+  <p>Total: $<%= @order.total %></p>
+  <p>Tax Percentage: <%= @order.tax_rate * 100 %>%</p>
+  <p>Taxes paid: $<%= @order.total * @order.tax_rate %></p>
+  <p>Total after taxes: $<%= @order.total + (@order.total * @order.tax_rate) %></p>
+
+  <h3>Items:</h3>
+  <div>
+    <table>
+      <tr>
+        <th>Item</th>
+        <th>Qty</th>
+        <th>Before Tax</th>
+        <th>After Tax</th>
+      </tr>
+      <% @order.order_items.each do |item| %>
+        <tr>
+          <td><%= item.item.name %></td>
+          <td><%= item.quantity %></td>
+          <td>$<%= item.item_price * item.quantity %></td>
+          <td><%= (item.item_price * item.quantity) + ((item.item_price * item.quantity) * @order.tax_rate) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
