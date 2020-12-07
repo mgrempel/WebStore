@@ -138,5 +138,7 @@ class CartController < ApplicationController
       order_item.save!
     end
     order.save!
+
+    cookies.delete :cart
   end
 end
