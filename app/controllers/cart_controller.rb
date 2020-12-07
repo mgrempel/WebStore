@@ -93,5 +93,49 @@ class CartController < ApplicationController
 
   def processorder
     # We need to add our cart contents to the order here, set it's status and persist all.
+    puts params[:tax]
+    puts params[:total]
+    puts params[:address]
+
+    # Grab our user
+    user = User.find(current_user.id)
+
+    # Create a new order.
+    order = Order.create!(
+      user:         user,
+      order_date:   DateTime.now,
+      address_info: AddressInfo.find(params[:address].to_i),
+      tax_rate:     params[:tax].to_d,
+      total:        params[:total].to_d
+    )
+
+    # Add our items to the order
+    cart = JSON.parse(cookies[:cart])
+
+    cart.each do |k, _|
+      # Get our item
+      current_item = Item.find(k)
+      puts current_item.name
+
+      current_price = if current_item.markdown != 0
+                        current_item.markdown
+                      else
+                        current_item.price
+                      end
+
+      # order.order_items.build(
+      #   item_id:    current_item.id,
+      #   item_price: current_price
+      # )
+
+      order_item = OrderItem.new(
+        item_id:    current_item.id,
+        order_id:   order.id,
+        item_price: current_price
+      )
+
+      order_item.save!
+    end
+    order.save!
   end
 end
