@@ -19,7 +19,7 @@
             <td>$<%= order.total + (order.total * order.tax_rate) %></td>
             <td><%= order.address_info.address %></td>
             <td><%= order.address_info.province.name %></td>
-            <td>View</td>
+            <td><%= link_to "View", users_view_path(order.id) %></td>
           </tr>
         <% end %>
       </table>

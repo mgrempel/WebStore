@@ -5,4 +5,6 @@ class UsersController < ApplicationController
     # Find our orders
     @orders = user.orders
   end
+
+  def view; end
 end
