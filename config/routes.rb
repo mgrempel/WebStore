@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  # get "user/address"
-  # post "user/new"
-  # get "user/new", to: "user#address"
+  get "users/orders"
+  get "users/:id", to: "users#view", as: "users_view"
   resources :address_infos
   delete "/address_infos.:id", to: "address_infos#destroy", as: "destroy_address_info"
   devise_for :users

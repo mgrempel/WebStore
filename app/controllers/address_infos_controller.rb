@@ -11,7 +11,6 @@ class AddressInfosController < ApplicationController
   end
 
   def create
-    puts params[:transition] + "---------------------------------------------------"
     input = params[:address_info]
     @address = AddressInfo.new(address:     input[:address],
                                address2:    input[:address2],

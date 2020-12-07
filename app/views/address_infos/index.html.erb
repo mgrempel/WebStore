@@ -12,7 +12,9 @@
           <td><%= address.city %></td>
           <td><%= address.postal_code %></td>
           <td><%= address.province.name %></td>
-          <td><%= link_to "Destroy", address_infos_path(address), method: :delete %></td>
+          <% if address.orders.blank? %>
+            <td><%= link_to "Destroy", address_infos_path(address), method: :delete %></td>
+          <% end %>
         </tr>
       <% end %>
     </table>
