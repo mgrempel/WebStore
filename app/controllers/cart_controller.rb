@@ -112,7 +112,7 @@ class CartController < ApplicationController
     # Add our items to the order
     cart = JSON.parse(cookies[:cart])
 
-    cart.each do |k, _|
+    cart.each do |k, v|
       # Get our item
       current_item = Item.find(k)
       puts current_item.name
@@ -131,7 +131,8 @@ class CartController < ApplicationController
       order_item = OrderItem.new(
         item_id:    current_item.id,
         order_id:   order.id,
-        item_price: current_price
+        item_price: current_price,
+        quantity:   v.to_i
       )
 
       order_item.save!
