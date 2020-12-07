@@ -5,11 +5,13 @@ class AddressInfosController < ApplicationController
   end
 
   def new
+    @transition = params[:transition]
     @address = AddressInfo.new
     @provinces = Province.all
   end
 
   def create
+    puts params[:transition] + "---------------------------------------------------"
     input = params[:address_info]
     @address = AddressInfo.new(address:     input[:address],
                                address2:    input[:address2],
@@ -21,7 +23,11 @@ class AddressInfosController < ApplicationController
 
     user.address_infos << @address
     if user.save
-      redirect_to address_infos_path
+      if params[:transition].blank?
+        redirect_to address_infos_path
+      else
+        redirect_to cart_neworder_path
+      end
     else
       render "new"
     end
@@ -35,6 +41,6 @@ class AddressInfosController < ApplicationController
   end
 
   def address_params
-    params.require(:address_info).permit(:address, :address2, :postal_code, :city, :province)
+    params.require(:address_info).permit(:address, :address2, :postal_code, :city, :province, :transition)
   end
 end

@@ -92,15 +92,11 @@ class CartController < ApplicationController
     else
       user = User.find(current_user.id)
       @addresses = user.address_infos
+      redirect_to new_address_info_path(transition: true) if @addresses.blank?
     end
   end
 
   def processorder
-    # We need to add our cart contents to the order here, set it's status and persist all.
-    puts params[:tax]
-    puts params[:total]
-    puts params[:address]
-
     # Grab our user
     user = User.find(current_user.id)
 
