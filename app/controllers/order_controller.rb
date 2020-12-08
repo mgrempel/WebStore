@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class OrderController < ApplicationController
   def orders
     user = User.find(current_user.id)
 
